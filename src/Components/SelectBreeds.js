@@ -7,7 +7,7 @@ class SelectBreeds extends Component{
 
     this.state = {
         breeds:[],
-        dogName: ""
+        dogName: "affenpinscher"
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -57,12 +57,17 @@ class SelectBreeds extends Component{
     )
   }
 
+  Capitalize(str){
+    return str.charAt(0).toUpperCase() + str.slice(1);
+    }
   
   render(){
 
     return(
-      <form>
-      <div>
+
+
+      <form style={{background: "black"}}>
+      <div className="selectBreed-container">
         <label>Select the breed</label>
         <select style={{marginLeft:"10px"}} value={this.state.dogName} onChange={this.handleChange} >
               { 
@@ -73,8 +78,8 @@ class SelectBreeds extends Component{
                 })
               }
        </select>
-       <div className="title">{this.state.dogName}</div>
       </div>
+      <div className="title">{this.Capitalize(this.state.dogName)}</div>
       </form> 
     );
   }
