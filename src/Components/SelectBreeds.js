@@ -6,7 +6,7 @@ class SelectBreeds extends Component{
     super(props);
 
     this.state = {
-        breeds:["husky","rottweiler","doberman"],
+        breeds:[],
         dogName: ""
     }
 
@@ -27,8 +27,6 @@ class SelectBreeds extends Component{
     )
     .then(
       result => {
-        console.log(result)
-        console.log(Object.keys(result.message))
         this.setState({breeds: Object.keys(result.message)})
       }
     )
@@ -38,7 +36,6 @@ class SelectBreeds extends Component{
   }
 
   handleChange(event){
-    console.log("Event.target.value is", event.target.value);
     this.setState({dogName: event.target.value});
 
     const imgUrl = `https://dog.ceo/api/breed/${event.target.value}/images/random`
@@ -55,7 +52,6 @@ class SelectBreeds extends Component{
     )
     .then(
       result => {
-        console.log(result)
         this.props.callback(result.message)
       }
     )
