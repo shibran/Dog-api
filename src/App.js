@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 import './App.css'
+import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import SelectBreeds from './Components/SelectBreeds'
 import ShowDog from './Components/ShowDog'
 
@@ -12,13 +14,12 @@ function App() {
   }
 
   return (
-    <div className="app-container">
-      <div className="main-container">
-        <SelectBreeds className="selectBreed-container" callback={callback}/>
-        <ShowDog className="image-container" imgUrl={imgUrl}/>
-      </div>
-    </div>
-
+    <Container maxWidth="sm">
+        <Typography component="div" style={{ backgroundColor: '#e0f2f1', height: '80vh' }}>
+          <SelectBreeds callback={callback}/>
+          <ShowDog imgUrl={imgUrl}/>
+        </Typography>
+      </Container>
   );
 }
 

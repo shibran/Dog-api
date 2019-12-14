@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 
-class SelectBreeds extends Component{
+
+
+class SelectBreeds extends Component {
 
   constructor(props){
     super(props);
@@ -60,27 +69,58 @@ class SelectBreeds extends Component{
   Capitalize(str){
     return str.charAt(0).toUpperCase() + str.slice(1);
     }
-  
+
   render(){
+
+    const classes = makeStyles(theme => ({
+        formControl: {
+          margin: theme.spacing(1),
+          minWidth: 120,
+        },
+        selectEmpty: {
+          marginTop: theme.spacing(2),
+        },
+        root: {
+          flexGrow: 1,
+        },
+        menuButton: {
+          marginRight: theme.spacing(2),
+        },
+        title: {
+          flexGrow: 1,
+        },
+      }));
+    
 
     return(
 
-
-      <form style={{background: "black"}}>
-      <div className="selectBreed-container">
-        <label>Select the breed</label>
-        <select style={{marginLeft:"10px"}} value={this.state.dogName} onChange={this.handleChange} >
+      <FormControl className={classes.formControl} style={{width:"100%"}}>
+      <div className={classes.root}>
+      <AppBar position="static" style={{backgroundColor:"#004d40"}}>
+      <Toolbar>
+        <div className="selectBreed-container">
+            <div><b>Select the breed</b></div>
+        <Select 
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={this.state.dogName} 
+          onChange={this.handleChange} 
+          style={{marginLeft: "10px", color: "white"}}
+          >
               { 
                 this.state.breeds.map((breed,index) => {
                   return (
-                      <option key={index} value={breed}>{breed}</option>
+                      <MenuItem key={index} value={breed}>{breed}</MenuItem>
                   ) 
                 })
               }
-       </select>
+       </Select>
+        </div>
+       </Toolbar>
+       </AppBar>
       </div>
       <div className="title">{this.Capitalize(this.state.dogName)}</div>
-      </form> 
+      </FormControl> 
     );
   }
 }
